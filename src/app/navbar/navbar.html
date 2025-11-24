@@ -43,13 +43,13 @@
                         </svg>
                     </button>
 
-                    <!-- Dropdown Menu -->
-                    <div *ngIf="isDropdownOpen"
-                        class="absolute left-0 mt-2 z-20 grid w-auto grid-cols-2 md:grid-cols-3 gap-4 p-4 rounded-base shadow bg-neutral-primary-soft border border-default">
-
+                    <div *ngIf="isDropdownOpen" class="absolute left-0 mt-2 z-50 min-w-[350px] md:min-w-[500px] 
+               grid grid-cols-2 md:grid-cols-3 gap-6 
+               p-6 rounded-lg shadow-lg bg-neutral-primary-soft border border-default">
                         <div>
                             <ul class="space-y-3 text-heading">
-                                <li><a routerLink="/about" class="hover:text-fg-brand">About Us</a></li>
+                                <li><a routerLink="/ip-new-admission" class="hover:text-fg-brand">ip-new-admission</a>
+                                </li>
                                 <li><a routerLink="/library" class="hover:text-fg-brand">Library</a></li>
                                 <li><a routerLink="/resources" class="hover:text-fg-brand">Resources</a></li>
                                 <li><a routerLink="/pro" class="hover:text-fg-brand">Pro Version</a></li>
