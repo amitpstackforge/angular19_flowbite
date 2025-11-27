@@ -1,1 +1,607 @@
-ip-new-admission
+<div id="main-div">
+
+    <!-- ✅ TAB HEADERS -->
+    <ul class="flex flex-wrap text-sm font-medium text-center text-body border-b border-default">
+        <li class="me-2">
+            <button (click)="setActive('Admission')" [ngClass]="activeTab === 'Admission'
+        ? 'inline-block p-4 text-fg-brand bg-neutral-secondary-soft rounded-t-base'
+        : 'inline-block p-4 rounded-t-base hover:text-heading hover:bg-neutral-secondary-soft'">
+                Admission
+            </button>
+        </li>
+
+        <li class="me-2">
+            <button (click)="setActive('Bed')" [ngClass]="activeTab === 'Bed'
+        ? 'inline-block p-4 text-fg-brand bg-neutral-secondary-soft rounded-t-base'
+        : 'inline-block p-4 rounded-t-base hover:text-heading hover:bg-neutral-secondary-soft'">
+                Bed Management
+            </button>
+        </li>
+
+        <li class="me-2">
+            <button (click)="setActive('Advance')" [ngClass]="activeTab === 'Advance'
+        ? 'inline-block p-4 text-fg-brand bg-neutral-secondary-soft rounded-t-base'
+        : 'inline-block p-4 rounded-t-base hover:text-heading hover:bg-neutral-secondary-soft'">
+                Advance
+            </button>
+        </li>
+        
+        <li class="me-2">
+            <button (click)="setActive('dailyCollection')" [ngClass]="activeTab === 'dailyCollection'
+                ? 'inline-block p-4 text-fg-brand bg-neutral-secondary-soft rounded-t-base'
+                : 'inline-block p-4 rounded-t-base hover:text-heading hover:bg-neutral-secondary-soft'">
+                dailyCollection
+            </button>
+        </li>
+    </ul>
+
+    <!-- ✅ TAB CONTENT -->
+    <div class="p-4 mt-3">
+
+        <!-- ✅ ADMISSION TAB -->
+        <div *ngIf="activeTab === 'Admission'">
+
+            <!-- ✅ FORM CONTAINER -->
+            <form class="grid grid-cols-2 gap-6 p-4 bg-neutral-primary-soft rounded-base">
+
+                <!-- ✅ ROW 1 -->
+                <div class="flex items-center gap-4">
+                    <label class="text-heading">Admitted Patient</label>
+
+                    <label class="text-heading">Search By</label>
+
+                    <select class="w-40 p-2 border border-default rounded-base bg-white text-sm">
+                        <option>Select...</option>
+                        <option>Name</option>
+                        <option>UHID</option>
+                        <option>Phone</option>
+                    </select>
+
+                    <input type="text" placeholder="Enter value..."
+                        class="w-48 p-2 border border-default rounded-base bg-white text-sm" />
+
+                    <button class="p-2 border border-default rounded-base bg-warning hover:bg-warning/80">
+                        🔍
+                    </button>
+
+                    <button class="p-2 border border-default rounded-base hover:bg-red-200">
+                        ❌
+                    </button>
+
+                    <button class="flex items-center gap-2 px-4 py-2 rounded-base bg-fg-brand text-white">
+                        ➕
+                    </button>
+                </div>
+
+                <!-- ✅ ROW 2 -->
+                <div class="flex items-center gap-4">
+
+                    <label class="text-heading">Admission Type</label>
+                    <select class="w-40 p-2 border border-default rounded-base bg-white text-sm">
+                        <option>Select...</option>
+                        <option>Emergency</option>
+                        <option>Routine</option>
+                    </select>
+
+                    <label class="text-heading">MLC Category</label>
+                    <select class="w-40 p-2 border border-default rounded-base bg-white text-sm">
+                        <option>Select...</option>
+                        <option>Road Accident</option>
+                        <option>Violence</option>
+                        <option>Other</option>
+                    </select>
+
+                </div>
+
+                <!-- ✅ ROW 3 -->
+                <div class="flex items-center gap-4">
+                    <label class="text-heading">MLC Police Station</label>
+
+                    <select class="w-48 p-2 border border-default rounded-base bg-white text-sm">
+                        <option>Select Police Station...</option>
+                        <option>PS-A</option>
+                        <option>PS-B</option>
+                        <option>PS-C</option>
+                    </select>
+
+                    <label class="text-heading">MLC Remarks</label>
+
+                    <select class="w-40 p-2 border border-default rounded-base bg-white text-sm">
+                        <option>Select...</option>
+                        <option>Serious</option>
+                        <option>Moderate</option>
+                        <option>Minor</option>
+                    </select>
+                </div>
+
+                <!-- ✅ ROW 4 -->
+                <div class="flex items-center gap-4">
+                    <label class="text-heading">Admitter/Attender Name</label>
+
+                    <select class="w-48 p-2 border border-default rounded-base bg-white text-sm">
+                        <option>Select Attender...</option>
+                        <option>Attender A</option>
+                        <option>Attender B</option>
+                        <option>Attender C</option>
+                    </select>
+
+                    <label class="text-heading">Admitter Contact</label>
+
+                    <select class="w-48 p-2 border border-default rounded-base bg-white text-sm">
+                        <option>Select...</option>
+                        <option>9876543210</option>
+                        <option>8765432109</option>
+                    </select>
+                </div>
+
+                <!-- ✅ ROW 5 -->
+                <div class="flex items-center gap-4">
+                    <label class="text-heading">Relationship</label>
+
+                    <select class="w-40 p-2 border border-default rounded-base bg-white text-sm">
+                        <option>Select...</option>
+                        <option>Father</option>
+                        <option>Mother</option>
+                        <option>Spouse</option>
+                    </select>
+
+                    <label class="text-heading">Admitted From</label>
+
+                    <select class="w-48 p-2 border border-default rounded-base bg-white text-sm">
+                        <option>Select...</option>
+                        <option>OPD</option>
+                        <option>Emergency</option>
+                        <option>Referral</option>
+                    </select>
+                </div>
+
+                <!-- ✅ ROW 6 -->
+                <div class="flex items-center gap-4">
+                    <label class="text-heading">Admission Reason / Procedure</label>
+
+                    <label class="text-heading">Select From</label>
+
+                    <select class="w-48 p-2 border border-default rounded-base bg-white text-sm">
+                        <option>Select…</option>
+                        <option>Procedure</option>
+                        <option>Admission Reason</option>
+                    </select>
+
+                    <span class="text-heading">OR</span>
+
+                    <input type="text" placeholder="Admission Reason..."
+                        class="w-64 p-2 border border-default rounded-base bg-white text-sm" />
+                </div>
+
+                <!-- ✅ ROW 7 -->
+                <div class="flex items-center gap-4">
+                    <label class="text-heading">Admitting Doctor</label>
+
+                    <select class="w-52 p-2 border border-default rounded-base bg-white text-sm">
+                        <option>Chandrasekhar AM</option>
+                        <option>Doctor 1</option>
+                        <option>Doctor 2</option>
+                    </select>
+
+                    <label class="text-heading">Referrer</label>
+
+                    <select class="w-52 p-2 border border-default rounded-base bg-white text-sm">
+                        <option>Select...</option>
+                        <option>Self</option>
+                        <option>External Doctor</option>
+                    </select>
+                </div>
+
+                <!-- ✅ ROW 8 -->
+                <div class="flex items-center gap-4">
+                    <label class="text-heading">Admission Date</label>
+
+                    <input type="text" value="25/05/2022"
+                        class="w-40 p-2 border border-default rounded-base bg-white text-sm" />
+
+                    <label class="text-heading">Admission Time</label>
+
+                    <input type="text" value="3:34 PM"
+                        class="w-32 p-2 border border-default rounded-base bg-white text-sm" />
+                </div>
+
+                <!-- ✅ ROW 9 -->
+                <div class="flex items-center gap-4">
+                    <label class="text-heading">Gov ID Type</label>
+
+                    <select class="w-40 p-2 border border-default rounded-base bg-white text-sm">
+                        <option>Select...</option>
+                        <option>Aadhaar</option>
+                        <option>PAN</option>
+                        <option>Voter ID</option>
+                    </select>
+
+                    <label class="text-heading">Gov ID Number</label>
+
+                    <input type="text" placeholder="Enter ID Number"
+                        class="w-48 p-2 border border-default rounded-base bg-white text-sm" />
+                </div>
+
+                <!-- ✅ ROW 10 -->
+                <div class="flex items-center gap-4">
+                    <label class="text-heading">Daycare Patient</label>
+                    <input type="checkbox" class="w-4 h-4">
+                </div>
+
+                <!-- ✅ ROW 11 -->
+                <div class="flex items-center gap-4">
+                    <label class="text-heading">Enable Insurance</label>
+                    <input type="checkbox" class="w-4 h-4" (change)="toggleInsurance($event)">
+                </div>
+
+            </form>
+
+        </div>
+
+        <div *ngIf="activeTab === 'Bed'">Bed Management content here
+            <table class="w-full border border-default rounded-base">
+                <thead>
+                    <tr class="text-left text-sm font-medium text-heading 
+                           bg-[oklch(87.1%_0.15_154.449)]">
+                        <th class="px-4 py-2">Bed Type</th>
+                        <th class="px-4 py-2">Bed Number</th>
+                        <th class="px-4 py-2">Check-in Date</th>
+                        <th class="px-4 py-2">Check-out Date</th>
+                        <th class="px-4 py-2">Current Room</th>
+                        <th class="p-2 text-left">Action</th>
+
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr *ngFor="let row of bedRows; let i = index" class="border-t border-default text-sm">
+
+                        <td class="px-4 py-2">
+                            <select class="w-full p-2 border border-default rounded-base bg-white"
+                                [(ngModel)]="row.bedType" name="bedType{{i}}">
+                                <option>Select…</option>
+                                <option>General</option>
+                                <option>ICU</option>
+                            </select>
+                        </td>
+
+                        <td class="px-4 py-2">
+                            <input type="text" [(ngModel)]="row.bedNumber" name="bedNumber{{i}}"
+                                class="w-full p-2 border border-default rounded-base bg-white" placeholder="Bed No" />
+                        </td>
+
+                        <td class="px-4 py-2">
+                            <input type="date" [(ngModel)]="row.checkIn" name="checkIn{{i}}"
+                                class="w-full p-2 border border-default rounded-base bg-white" />
+                        </td>
+
+                        <td class="px-4 py-2">
+                            <input type="date" [(ngModel)]="row.checkOut" name="checkOut{{i}}"
+                                class="w-full p-2 border border-default rounded-base bg-white" />
+                        </td>
+
+                        <td class="px-4 py-2">
+                            <input type="text" [(ngModel)]="row.currentRoom" name="currentRoom{{i}}"
+                                class="w-full p-2 border border-default rounded-base bg-white" placeholder="Room No" />
+                        </td>
+                        <td class="p-2">
+                            <button class="px-3 py-1 rounded-base bg-red-500 text-white hover:opacity-90"
+                                (click)="removeRow(i)">
+                                🗑️ Remove
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+                <tfoot class="border-t">
+                    <tr>
+                        <td colspan="2" class="p-2 font-semibold">Total</td>
+                        <td class="p-2 font-bold text-[#84E1BC]">{{ total }}</td>
+                        <td></td>
+                    </tr>
+                </tfoot>
+
+            </table>
+
+            <div class="flex items-center gap-6 p-4 bg-neutral-primary-soft rounded-base">
+
+                <!-- New Bed Type -->
+                <label class="text-heading text-sm font-medium">New Bed Type</label>
+
+                <select class="w-40 p-2 border border-default rounded-base bg-white text-sm focus:outline-none">
+                    <option value="">Select...</option>
+                    <option value="general">General</option>
+                    <option value="semi-private">Semi-Private</option>
+                    <option value="private">Private</option>
+                </select>
+
+                <!-- New Bed Number -->
+                <label class="text-heading text-sm font-medium">New Bed Number</label>
+
+                <select class="w-40 p-2 border border-default rounded-base bg-white text-sm focus:outline-none">
+                    <option value="">Select...</option>
+                    <option value="101">101</option>
+                    <option value="102">102</option>
+                    <option value="103">103</option>
+                </select>
+
+                <!-- Assign Bed Button -->
+                <!-- Assign Bed Button -->
+                <button (click)="addRow()"
+                    class="flex items-center gap-2 px-4 py-2 rounded-base text-white hover:opacity-90"
+                    style="background-color: oklch(64.8% 0.2 131.684);">
+
+                    <!-- White Bed Icon -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="white" viewBox="0 0 24 24">
+                        <path d="M3 7h18v10h-2v-4H5v4H3V7zm4 2c-1.1 0-2 .9-2 2v2h6v-2c0-1.1-.9-2-2-2H7z" />
+                    </svg>
+
+                    Assign Bed
+                </button>
+
+                <!-- View Room Tariffs Button -->
+                <button (click)="openTariffModal()"
+                    class="flex items-center gap-2 px-4 py-2 rounded-base text-white hover:opacity-90"
+                    style="background-color: oklch(55.5% 0.163 48.998)">
+
+                    <!-- White Chart Icon -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="white" viewBox="0 0 24 24">
+                        <path d="M3 3h2v18H3V3zm6 8h2v10H9V11zm6-4h2v14h-2V7zm6-6h2v20h-2V1z" />
+                    </svg>
+
+                    View Room Tariffs
+                </button>
+                <!-- ================= MODAL ================= -->
+                <div *ngIf="showTariffModal" class="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
+
+                    <div class="bg-white w-96 rounded-lg shadow-lg p-6">
+
+                        <!-- Heading -->
+                        <h2 class="text-lg font-semibold text-heading mb-4">
+                            Room Tariffs Details
+                        </h2>
+
+                        <!-- Table -->
+                        <table class="w-full text-sm border border-default rounded-base">
+                            <thead class="bg-neutral-secondary-soft">
+                                <tr>
+                                    <th class="p-2 border border-default text-left">SI No</th>
+                                    <th class="p-2 border border-default text-left">Item Name</th>
+                                    <th class="p-2 border border-default text-left">Price</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <tr *ngFor="let row of tariffData">
+                                    <td class="p-2 border border-default">{{ row.si }}</td>
+                                    <td class="p-2 border border-default">{{ row.item }}</td>
+                                    <td class="p-2 border border-default">{{ row.price }}</td>
+                                </tr>
+
+                                <!-- Total Row -->
+                                <tr>
+                                    <td colspan="2" class="p-2 font-semibold border border-default">
+                                        Total
+                                    </td>
+                                    <td class="p-2 font-semibold border border-default text-white"
+                                        style="background-color:#84E1BC;">
+                                        {{ totalAmount }}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <!-- Close Button -->
+                        <div class="flex justify-end mt-4">
+                            <button (click)="closeTariffModal()"
+                                class="px-4 py-2 rounded-base bg-red-500 text-white hover:bg-red-600">
+                                Close
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <div *ngIf="activeTab === 'dailyCollection'">
+            
+            amit
+            
+            dailyCollection content here</div>
+        <div *ngIf="activeTab === 'Advance'">Advance content here
+            <div class="flex items-center justify-between gap-4 p-3">
+                <div class="flex items-center gap-3">
+                    <span class="text-sm font-medium text-heading">Advances</span>
+            
+                <button type="button" (click)="addAdvance()"
+                    class="inline-flex items-center gap-2 px-3 py-1 rounded-base text-white text-sm hover:opacity-90"
+                    style="background-color: #F05252;">
+                    +Advance
+                </button>
+                
+                <button type="button" (click)="fromReservation()"
+                    class="inline-flex items-center gap-2 px-3 py-1 rounded-base text-white text-sm hover:opacity-90"
+                    style="background-color: #451878;">
+                    +From Reservation
+                
+                    <span class="ml-3 px-3 py-1 rounded-full text-white text-sm font-medium" style="background-color: #057A55;">
+                        Balance {{ balance | number }}
+                    </span>
+                </button>
+
+            
+                   
+                </div>
+            
+                <div class="text-sm font-medium text-heading">
+                    Advance: <span class="font-semibold">{{ advance | number }}</span>
+                </div>
+            </div>
+<table class="w-full border border-default text-sm rounded-base overflow-hidden">
+    <thead>
+        <tr class="bg-neutral-secondary-soft text-heading text-left">
+            <th class="p-2">Date</th>
+            <th class="p-2">Mode</th>
+            <th class="p-2">Amount</th>
+            <th class="p-2">Comments</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <!-- ✅ First Row -->
+        <tr style="background-color: #FDF6B2;">
+            <td class="p-2">25/11/2025</td>
+            <td class="p-2">Patient Wallet</td>
+            <td class="p-2">10000</td>
+            <td class="p-2">—</td>
+        </tr>
+
+       
+    </tbody>
+</table>
+
+        </div>
+
+    </div>
+
+    <div class="p-4 bg-neutral-primary-soft rounded-base" *ngIf="showInsuranceDetails">
+
+        <div class="grid grid-cols-6 gap-4">
+
+            <!-- 1. Insurance -->
+            <div class="flex flex-col">
+                <label class="text-sm font-medium text-heading">Insurance</label>
+                <select class="border border-default rounded-base p-2 bg-white text-sm focus:outline-none">
+                    <option value="">Select...</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </div>
+
+            <!-- 2. Policy ID -->
+            <div class="flex flex-col">
+                <label class="text-sm font-medium text-heading">Policy ID</label>
+                <input type="text" class="border border-default rounded-base p-2 bg-white text-sm focus:outline-none"
+                    placeholder="Enter Policy ID" />
+            </div>
+
+            <!-- 3. Expiry Date -->
+            <div class="flex flex-col">
+                <label class="text-sm font-medium text-heading">Expiry Date</label>
+                <input type="date" class="border border-default rounded-base p-2 bg-white text-sm focus:outline-none" />
+            </div>
+
+            <!-- 4. Insurance Name -->
+            <div class="flex flex-col">
+                <label class="text-sm font-medium text-heading">Insurance Name</label>
+                <input type="text" class="border border-default rounded-base p-2 bg-white text-sm focus:outline-none"
+                    placeholder="Insurance Name" />
+            </div>
+
+            <!-- 5. Policy Holder -->
+            <div class="flex flex-col">
+                <label class="text-sm font-medium text-heading">Policy Holder</label>
+                <input type="text" class="border border-default rounded-base p-2 bg-white text-sm focus:outline-none"
+                    placeholder="Policy Holder Name" />
+            </div>
+
+            <!-- 6. Payment Date -->
+            <div class="flex flex-col">
+                <label class="text-sm font-medium text-heading">Payment Date</label>
+                <input type="date" class="border border-default rounded-base p-2 bg-white text-sm focus:outline-none" />
+            </div>
+
+            <!-- 7. Company Code -->
+            <div class="flex flex-col">
+                <label class="text-sm font-medium text-heading">Company Code</label>
+                <input type="text" class="border border-default rounded-base p-2 bg-white text-sm focus:outline-none"
+                    placeholder="Company Code" />
+            </div>
+
+            <!-- 8. Policy Number -->
+            <div class="flex flex-col">
+                <label class="text-sm font-medium text-heading">Policy Number</label>
+                <input type="text" class="border border-default rounded-base p-2 bg-white text-sm focus:outline-none"
+                    placeholder="Policy Number" />
+            </div>
+
+            <!-- 9. Comments -->
+            <div class="flex flex-col col-span-2">
+                <label class="text-sm font-medium text-heading">Comments</label>
+                <input type="text" class="border border-default rounded-base p-2 bg-white text-sm focus:outline-none"
+                    placeholder="Comments" />
+            </div>
+
+            <!-- 10. Insurance Paid -->
+            <div class="flex flex-col">
+                <label class="text-sm font-medium text-heading">Insurance Paid</label>
+                <input type="text" class="border border-default rounded-base p-2 bg-white text-sm focus:outline-none"
+                    placeholder="Amount" />
+            </div>
+
+            <!-- 11. TPA Provider -->
+            <div class="flex flex-col">
+                <label class="text-sm font-medium text-heading">TPA Provider</label>
+                <select class="border border-default rounded-base p-2 bg-white text-sm focus:outline-none">
+                    <option value="">Select...</option>
+                    <option value="med-assist">MedAssist</option>
+                    <option value="paramount">Paramount</option>
+                    <option value="heritage">Heritage</option>
+                </select>
+            </div>
+
+            <!-- 12. Clear TPA -->
+            <div class="flex flex-col">
+                <label class="text-sm font-medium text-heading">Clear TPA</label>
+                <input type="text" class="border border-default rounded-base p-2 bg-white text-sm focus:outline-none"
+                    placeholder="Notes" />
+            </div>
+
+            <!-- 13. Consumables Checkbox -->
+            <div class="flex items-center gap-2 col-span-2 mt-6">
+                <input type="checkbox" class="w-4 h-4 border border-default rounded-sm" />
+                <label class="text-sm font-medium text-heading">
+                    Include Consumables in Package
+                </label>
+            </div>
+
+        </div>
+        <!-- Put this inside your form/container where you need the row -->
+        <div class="flex items-center gap-4 p-2">
+
+            <!-- Left grouped area -->
+            <div class="flex items-center gap-3 rounded-full px-3 py-1" style="background-color: #057A55;">
+                <!-- Level label -->
+                <span class="text-sm font-medium text-white">Level</span>
+
+                <!-- +Advance button -->
+                <button type="button" (click)="onAddAdvance()"
+                    class="flex items-center gap-1 px-2 py-1 rounded-md text-sm font-medium bg-white/10 hover:bg-white/20 text-white">
+                    <span class="text-sm">＋</span>
+                    <span class="text-sm">Advance</span>
+                </button>
+
+                <!-- +From Reservation button -->
+                <button type="button" (click)="onFromReservation()"
+                    class="flex items-center gap-1 px-2 py-1 rounded-md text-sm font-medium bg-white/10 hover:bg-white/20 text-white">
+                    <span class="text-sm">＋</span>
+                    <span class="text-sm">From Reservation</span>
+                </button>
+
+                <!-- balance pill -->
+                <span class="ml-2 text-sm font-semibold text-white">balance <span class="font-bold">1000</span></span>
+            </div>
+
+            <!-- Spacer pushes the right block to the far right -->
+            <div class="ml-auto text-right">
+                <div class="text-sm text-muted">Advance</div>
+                <div class="text-lg font-semibold">₹<span>{{ advanceAmount | number }}</span></div>
+            </div>
+
+        </div>
+
+
+    </div>
+
+</div>
