@@ -1,0 +1,214 @@
+<table class="w-full border border-gray-400 border-collapse">
+    <tr>
+        <!-- ================= FIRST COLUMN ================= -->
+        <td class="w-[70%] border border-gray-400 align-top p-2">
+
+            <!-- Nested Table -->
+            <table class="w-full border border-gray-400 border-collapse">
+
+                <!-- ROW 1 → SIX COLUMNS -->
+                <tr>
+
+                    <!-- 1️⃣ Column 1: Select -->
+                    <td class="border border-gray-400 p-2 w-[15%]">
+                        <select class="border border-gray-400 rounded p-1 w-full">
+                            <option>Select</option>
+                        </select>
+                    </td>
+
+                    <!-- 2️⃣ Column 2: Radios + textboxes + Icon buttons -->
+                    <td class="border border-gray-400 p-2">
+
+                        <!-- Line 1: Radio Buttons -->
+                        <div class="flex gap-3">
+                            <label class="flex items-center gap-1">
+                                <input type="radio" name="type" /> Brand
+                            </label>
+                            <label class="flex items-center gap-1">
+                                <input type="radio" name="type" /> Composition
+                            </label>
+                        </div>
+
+                        <!-- Line 2: Textbox + Add/Delete Emoji Buttons -->
+                        <div class="flex items-center gap-2 mt-2">
+                            <input type="text" class="border border-gray-400 rounded p-1 w-full"
+                                placeholder="Enter text" />
+                            <button class="px-2 text-green-600">➕</button>
+                            <button class="px-2 text-red-600">🗑️</button>
+                        </div>
+
+                        <!-- Line 3: Another Textbox -->
+                        <input type="text" class="border border-gray-400 rounded p-1 w-full mt-2"
+                            placeholder="More text" />
+
+                    </td>
+
+                    <!-- 3️⃣ Column 3: Select -->
+                    <td class="border border-gray-400 p-2  w-[15%]">
+                        <select class="border border-gray-400 rounded p-1 w-full">
+                            <option>Select</option>
+                        </select>
+                    </td>
+
+                    <!-- 4️⃣ Column 4: Checkbox -->
+                    <td class="border border-gray-400 p-2">
+                        <label class="flex items-center gap-2">
+                            <input type="checkbox" /> Option
+                        </label>
+                    </td>
+
+                    <!-- 5️⃣ Column 5: Textbox -->
+                    <td class="border border-gray-400 p-2">
+                        <input type="text" class="border border-gray-400 rounded p-1 w-full" />
+                    </td>
+
+                    <!-- 6️⃣ Column 6: Select -->
+                    <td class="border border-gray-400 p-2 w-[15%]">
+                        <select class="border border-gray-400 rounded p-1 w-full">
+                            <option>Select</option>
+                        </select>
+                    </td>
+
+                </tr>
+
+                <!-- ROW 2 → FULL WIDTH -->
+                <tr>
+                    <td colspan="6" class="border border-gray-400 p-2">
+                        Full Width Row Content
+                        <div class="w-full space-y-4 p-4 border rounded-lg bg-neutral-50">
+
+                            <!-- ROW 1 — Food Instruction Radios -->
+                            <div class="flex flex-wrap items-center gap-6">
+
+                                <label class="flex items-center gap-2">
+                                    <input type="radio" name="food" class="w-4 h-4" />
+                                    Before Food
+                                </label>
+
+                                <label class="flex items-center gap-2">
+                                    <input type="radio" name="food" class="w-4 h-4" />
+                                    After Food
+                                </label>
+
+                                <label class="flex items-center gap-2">
+                                    <input type="radio" name="food" class="w-4 h-4" />
+                                    With Food
+                                </label>
+
+                                <label class="flex items-center gap-2">
+                                    <input type="radio" name="food" class="w-4 h-4" />
+                                    Other
+                                    <span>🖊️</span>
+                                    <span>(Note)</span>
+                                </label>
+
+                            </div>
+
+                            <!-- ROW 2 — Available Dosages -->
+                            <div class="flex items-center gap-3">
+                                <label class="font-semibold text-heading">Available Dosages (6):</label>
+                                <select class="border border-default rounded-base px-3 py-2 w-52">
+                                    <option>-Select a Dosage-</option>
+                                </select>
+                            </div>
+
+                            <!-- ROW 3 — Qty + Route + Volume + Rate -->
+                            <div class="flex flex-wrap items-center gap-6">
+
+                                <!-- Ordered Qty -->
+                                <div class="flex items-center gap-2">
+                                    <label class="font-semibold text-heading">Ordered Qty:</label>
+                                    <input type="text" class="border border-default rounded-base px-3 py-2 w-20"
+                                        value="0" />
+                                </div>
+
+                                <!-- Route -->
+                                <div class="flex items-center gap-2">
+                                    <label class="font-semibold text-heading">Route:</label>
+                                    <select class="border border-default rounded-base px-3 py-2 w-40">
+                                        <option>-select-</option>
+                                    </select>
+                                </div>
+
+                                <!-- Total Volume -->
+                                <div class="flex items-center gap-2">
+                                    <label class="font-semibold text-heading">Total volume (ml):</label>
+                                    <select class="border border-default rounded-base px-3 py-2 w-32">
+                                        <option>-select-</option>
+                                    </select>
+                                </div>
+
+                                <!-- Rate -->
+                                <div class="flex items-center gap-2">
+                                    <label class="font-semibold text-heading">Rate (ml/hr):</label>
+                                    <input type="text" class="border border-default rounded-base px-3 py-2 w-28" />
+                                </div>
+
+                            </div>
+
+                            <!-- ROW 4 — Medication Status -->
+                            <div>
+                                <label class="font-semibold text-heading">Medication Status:</label>
+                            </div>
+
+                            <!-- ROW 5 — Pending/Stopped + START -->
+                            <div class="flex items-center gap-4">
+
+                                <button class="px-4 py-2 bg-red-500 text-white rounded-base hover:bg-red-600">
+                                    Pending / Stopped
+                                </button>
+
+                                <button class="px-4 py-2 bg-green-600 text-white rounded-base hover:bg-green-700">
+                                    START
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </td>
+                </tr>
+
+            </table>
+        </td>
+
+        <!-- ================= SECOND COLUMN ================= -->
+        <td class="w-[10%] border border-gray-400 p-3 align-top">
+
+            <!-- Line 1: Label + Text -->
+            <label class="font-medium text-heading block">Label Name</label>
+
+            <!-- Line 2: Date Input -->
+            <input type="date" class="border border-gray-400 rounded p-1 w-full mt-2" />
+
+            <!-- Line 3: Checkbox -->
+            <div class="mt-3">
+                <label class="flex items-center gap-2">
+                    <input type="checkbox" /> Enable Option
+                </label>
+            </div>
+
+            <!-- Line 4: Textbox + Select in same line -->
+            <div class=" gap-2 mt-3">
+                <input type="text" class="border border-gray-400 rounded p-1 w-full mb-2" placeholder="Enter value" />
+                <select class="border border-gray-400 rounded p-1 w-full">
+                    <option>Select</option>
+                </select>
+            </div>
+
+        </td>
+
+        <!-- ================= THIRD COLUMN ================= -->
+        <td class="w-[5%] border border-gray-400 p-3 align-top">
+
+            <div class="flex flex-col gap-3">
+
+                <button class="border border-gray-400 rounded p-2">⬆️</button>
+                <button class="border border-gray-400 rounded p-2">⬇️</button>
+                <button class="border border-red-500 text-red-600 rounded p-2">🗑️</button>
+
+            </div>
+
+        </td>
+    </tr>
+</table>

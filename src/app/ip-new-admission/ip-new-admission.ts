@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { MedicationOrder } from '../medication-order/medication-order';
 
 @Component({
   selector: 'app-ip-new-admission',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, MedicationOrder],
   templateUrl: './ip-new-admission.html',
   styleUrl: './ip-new-admission.css',
 })
@@ -21,6 +22,9 @@ export class IpNewAdmissionComponent {
   toggleInsurance(event: any) {
     this.showInsuranceDetails = event.target.checked;
   }
+
+  selectedPatientId: string = '500454'; // বা ডাইনামিক patient ID
+
   showTariffModal = false;
 
   tariffData = [
@@ -105,7 +109,7 @@ export class IpNewAdmissionComponent {
     this.balance = Math.max(0, this.balance - fromRes);
     // TODO: implement reservation selection & apply payment logic
   }
-   advance = 10000;
+  advance = 10000;
 
   addAdvance() {
     // your logic to add advance (open modal / update values)
@@ -116,4 +120,30 @@ export class IpNewAdmissionComponent {
     // your logic to pull from reservation
     console.log('From Reservation clicked');
   }
+
+
+  // Default active tab
+  activeTabIP: string = 'Admission Instructions';
+
+  // Set tab
+  setActiveIP(tab: string) {
+    this.activeTabIP = tab;
+  }
+
+  // List of all tabs
+  tabs: string[] = [
+    'Admission Instructions',
+    'Doctors Activity',
+    'Nursing Activity',
+    'Indents',
+    'Lab Results',
+    'Prescriptions',
+    'Discharge Notes',
+    'Clearance',
+    'Forms',
+    'Attachments',
+    'OP Records',
+    'OT Notes',
+    'Summary & Print'
+  ];
 }
