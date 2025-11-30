@@ -25,12 +25,19 @@
                 Advance
             </button>
         </li>
-        
+
         <li class="me-2">
             <button (click)="setActive('dailyCollection')" [ngClass]="activeTab === 'dailyCollection'
                 ? 'inline-block p-4 text-fg-brand bg-neutral-secondary-soft rounded-t-base'
                 : 'inline-block p-4 rounded-t-base hover:text-heading hover:bg-neutral-secondary-soft'">
                 dailyCollection
+            </button>
+        </li>
+        <li class="me-2">
+            <button (click)="setActive('IP')" [ngClass]="activeTab === 'IP'
+                        ? 'inline-block p-4 text-fg-brand bg-neutral-secondary-soft rounded-t-base'
+                        : 'inline-block p-4 rounded-t-base hover:text-heading hover:bg-neutral-secondary-soft'">
+                IP
             </button>
         </li>
     </ul>
@@ -404,63 +411,451 @@
             </div>
 
         </div>
-        <div *ngIf="activeTab === 'dailyCollection'">
-            
-            amit
-            
-            dailyCollection content here</div>
+
         <div *ngIf="activeTab === 'Advance'">Advance content here
             <div class="flex items-center justify-between gap-4 p-3">
                 <div class="flex items-center gap-3">
                     <span class="text-sm font-medium text-heading">Advances</span>
-            
-                <button type="button" (click)="addAdvance()"
-                    class="inline-flex items-center gap-2 px-3 py-1 rounded-base text-white text-sm hover:opacity-90"
-                    style="background-color: #F05252;">
-                    +Advance
-                </button>
-                
-                <button type="button" (click)="fromReservation()"
-                    class="inline-flex items-center gap-2 px-3 py-1 rounded-base text-white text-sm hover:opacity-90"
-                    style="background-color: #451878;">
-                    +From Reservation
-                
-                    <span class="ml-3 px-3 py-1 rounded-full text-white text-sm font-medium" style="background-color: #057A55;">
-                        Balance {{ balance | number }}
-                    </span>
-                </button>
 
-            
-                   
+                    <button type="button" (click)="addAdvance()"
+                        class="inline-flex items-center gap-2 px-3 py-1 rounded-base text-white text-sm hover:opacity-90"
+                        style="background-color: #F05252;">
+                        +Advance
+                    </button>
+
+                    <button type="button" (click)="fromReservation()"
+                        class="inline-flex items-center gap-2 px-3 py-1 rounded-base text-white text-sm hover:opacity-90"
+                        style="background-color: #451878;">
+                        +From Reservation
+
+                        <span class="ml-3 px-3 py-1 rounded-full text-white text-sm font-medium"
+                            style="background-color: #057A55;">
+                            Balance {{ balance | number }}
+                        </span>
+                    </button>
+
+
+
                 </div>
-            
+
                 <div class="text-sm font-medium text-heading">
                     Advance: <span class="font-semibold">{{ advance | number }}</span>
                 </div>
             </div>
-<table class="w-full border border-default text-sm rounded-base overflow-hidden">
-    <thead>
-        <tr class="bg-neutral-secondary-soft text-heading text-left">
-            <th class="p-2">Date</th>
-            <th class="p-2">Mode</th>
-            <th class="p-2">Amount</th>
-            <th class="p-2">Comments</th>
-        </tr>
-    </thead>
+            <table class="w-full border border-default text-sm rounded-base overflow-hidden">
+                <thead>
+                    <tr class="bg-neutral-secondary-soft text-heading text-left">
+                        <th class="p-2">Date</th>
+                        <th class="p-2">Mode</th>
+                        <th class="p-2">Amount</th>
+                        <th class="p-2">Comments</th>
+                    </tr>
+                </thead>
 
-    <tbody>
-        <!-- ✅ First Row -->
-        <tr style="background-color: #FDF6B2;">
-            <td class="p-2">25/11/2025</td>
-            <td class="p-2">Patient Wallet</td>
-            <td class="p-2">10000</td>
-            <td class="p-2">—</td>
-        </tr>
+                <tbody>
+                    <!-- ✅ First Row -->
+                    <tr style="background-color: #FDF6B2;">
+                        <td class="p-2">25/11/2025</td>
+                        <td class="p-2">Patient Wallet</td>
+                        <td class="p-2">10000</td>
+                        <td class="p-2">—</td>
+                    </tr>
 
-       
-    </tbody>
-</table>
 
+                </tbody>
+            </table>
+
+        </div>
+        <div *ngIf="activeTab === 'dailyCollection'">
+            Daily Collection content here
+
+            <div class="flex items-center gap-4 mb-4">
+
+
+                <!-- Search By -->
+                <label class="text-heading whitespace-nowrap">Search By</label>
+
+                <!-- Select: Name / Number -->
+                <select class="px-3 py-2 border border-default rounded-base">
+                    <option>Name</option>
+                    <option>Number</option>
+                </select>
+
+                <!-- Search Box + Icons -->
+                <div class="flex items-center gap-2">
+                    <input type="text" placeholder="Search..." class="px-3 py-2 border border-default rounded-base" />
+
+                    <!-- Search Icon Button (Blue) -->
+                    <button class="text-xl px-3 py-2 rounded-base bg-blue-500 text-white hover:bg-blue-600">
+                        🔍
+                    </button>
+
+                    <!-- Cross Icon Button (Yellow) -->
+                    <button class="text-xl px-3 py-2 rounded-base bg-yellow-400 text-black hover:bg-yellow-500">
+                        ❌
+                    </button>
+                </div>
+
+
+                <!-- Doctor -->
+                <label class="text-heading whitespace-nowrap">Dr </label>
+                <select class="px-3 py-2 border border-default rounded-base">
+                    <option>All</option>
+                    <option>Dr. Amit</option>
+                    <option>Dr. Roy</option>
+                </select>
+
+                <div class="flex items-center gap-2">
+
+                    <!-- Search Icon Button (Blue) -->
+                    <button class="text-xl px-3 py-2 rounded-base bg-blue-500 text-white hover:bg-blue-600">
+                        🔍
+                    </button>
+
+                    <!-- Cross Icon Button (Yellow) -->
+                    <button class="text-xl px-3 py-2 rounded-base bg-yellow-400 text-black hover:bg-yellow-500">
+                        ❌
+                    </button>
+                </div>
+
+                <!-- Invoice ID + Search Box -->
+                <label class="text-heading">Invoice ID</label>
+                <div class="flex items-center   border-default rounded-base overflow-hidden">
+                    <input type="text" placeholder="Search..." class="px-3 py-2 border border-default rounded-base" />
+                    <!-- Search Icon Button (Blue) -->
+                    <button class="text-xl px-3 py-2 rounded-base bg-blue-500 text-white hover:bg-blue-600">
+                        🔍
+                    </button>
+
+                    <!-- Cross Icon Button (Yellow) -->
+                    <button class="text-xl px-3 py-2 rounded-base bg-yellow-400 text-black hover:bg-yellow-500">
+                        ❌
+                    </button>
+                </div>
+                <!-- Search Icon Button (Blue) -->
+                <button class="text-xl px-3 py-2 rounded-base bg-blue-500 text-white hover:bg-blue-600">
+                    Search
+                </button>
+            </div>
+            <!-- Row 1: Admission Status -->
+            <div class="flex items-center gap-4 mb-4">
+                <label class="font-semibold text-heading">Admission Status:</label>
+
+                <label class="flex items-center gap-1">
+                    <input type="radio" name="adStatus" class="accent-blue-600" />
+                    Admitted
+                </label>
+
+                <label class="flex items-center gap-1">
+                    <input type="radio" name="adStatus" class="accent-blue-600" />
+                    Discharged
+                </label>
+
+                <label class="flex items-center gap-1">
+                    <input type="radio" name="adStatus" class="accent-blue-600" />
+                    Cancelled
+                </label>
+            </div>
+
+            <!-- Row 2: Filter by date -->
+            <div class="flex items-center gap-4 mb-4">
+                <label class="font-semibold text-heading">Filter by date:</label>
+
+                <label class="flex items-center gap-2">
+                    Start Date
+                    <input type="date" class="border border-default rounded-base px-2 py-1" />
+                </label>
+
+                <label class="flex items-center gap-2">
+                    End Date
+                    <input type="date" class="border border-default rounded-base px-2 py-1" />
+                </label>
+            </div>
+
+            <!-- Row 3: Show -->
+            <div class="flex items-center gap-4 ">
+                <label class="font-semibold text-heading">Show:</label>
+
+                <label class="flex items-center gap-1">
+                    <input type="radio" name="billType" class="accent-blue-600" />
+                    All Bills
+                </label>
+
+                <label class="flex items-center gap-1">
+                    <input type="radio" name="billType" class="accent-blue-600" />
+                    Due Bills
+                </label>
+
+                <label class="flex items-center gap-1">
+                    <input type="radio" name="billType" class="accent-blue-600" />
+                    Cancelled Bills
+                </label>
+
+                <label class="flex items-center gap-1">
+                    <input type="checkbox" class="accent-blue-600" />
+                    Discharge Pending
+                </label>
+            </div>
+
+            <div class="my-4">
+                <hr class="border-t border-default" />
+            </div>
+            <button type="button"
+                class="text-white bg-[#3b5998] hover:bg-[#3b5998]/90 focus:ring-4 focus:outline-none focus:ring-[#3b5998]/50 box-border border border-transparent font-medium leading-5 rounded-base text-sm px-4 py-2.5 text-center inline-flex items-center dark:focus:ring-[#3b5998]/55">
+                <svg class="w-4 h-4 me-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                    fill="currentColor" viewBox="0 0 24 24">
+                    <path fill-rule="evenodd"
+                        d="M13.135 6H15V3h-1.865a4.147 4.147 0 0 0-4.142 4.142V9H7v3h2v9.938h3V12h2.021l.592-3H12V6.591A.6.6 0 0 1 12.592 6h.543Z"
+                        clip-rule="evenodd" />
+                </svg>
+                Sign in with Facebook
+            </button>
+
+            <div class="my-4 border-t border-b border-default py-2">
+                <b>IP Bills</b>
+            </div>
+
+            <div class="my-4 border-t border-b border-default py-2">
+
+                <div
+                    class="flex items-start justify-between w-full bg-neutral-secondary-soft p-4 border border-default rounded-base">
+
+                    <!-- LEFT SIDE -->
+                    <div class="space-y-3">
+
+                        <!-- Search By Item -->
+                        <div class="flex items-center gap-2">
+                            <label class="font-semibold text-heading">Search By Item:</label>
+
+                            <!-- Input with suggestions -->
+                            <input type="text" placeholder="Type to get suggestions"
+                                class="px-3 py-2 border border-default rounded-base w-56" />
+
+                            <!-- Clear button -->
+                            <button class="px-3 py-1 bg-blue-500 text-white text-sm rounded-base">
+                                Clear
+                            </button>
+                            <!-- Small space -->
+                            <div class="h-1"></div>
+
+                            <!-- Patient ID / Number / Name -->
+                            <div>
+                                <label class="font-semibold text-heading">(Patient ID/Number/Name):</label>
+
+                                <input type="text" class="px-3 py-2 border border-default rounded-base w-56" />
+
+
+                                <button class="px-3 py-1 bg-blue-500 text-white text-sm rounded-base">
+                                    Clear
+                                </button>
+                            </div>
+                        </div>
+
+
+
+                        <!-- Tiny space -->
+                        <div class="h-1"></div>
+
+                        <!-- Message -->
+                        <p class="text-sm text-body">
+                            There are more records, please click next page to see more records
+                        </p>
+                    </div>
+
+                    <!-- RIGHT SIDE PAGINATION -->
+                    <div class="flex items-center gap-2 text-sm">
+
+                        <!-- Prev -->
+                        <button class="px-3 py-1 border rounded-base hover:bg-neutral-primary-soft">
+                            &lt; Prev
+                        </button>
+
+                        <!-- Page Info -->
+                        <span class="px-3 py-1 border rounded-base">
+                            1 to 10
+                        </span>
+
+                        <!-- Next -->
+                        <button class="px-3 py-1 border rounded-base hover:bg-neutral-primary-soft">
+                            Next &gt;
+                        </button>
+
+                    </div>
+                </div>
+
+            </div>
+            <table class="w-full border border-default text-sm">
+                <thead class="bg-neutral-secondary-soft">
+                    <tr class="border-b border-default">
+                        <th class="p-2 text-left">IP ID</th>
+                        <th class="p-2 text-left">Invoice ID</th>
+                        <th class="p-2 text-left">Hospital Patient Name</th>
+                        <th class="p-2 text-left">Patient Mobile</th>
+                        <th class="p-2 text-left">Adm. Date</th>
+                        <th class="p-2 text-left">Disch. Date</th>
+                        <th class="p-2 text-left">Room Type</th>
+                        <th class="p-2 text-left">Room #</th>
+                        <th class="p-2 text-left">Admitting Dr</th>
+                        <th class="p-2 text-left">Crtd By / Disch By</th>
+                        <th class="p-2 text-left">Advance</th>
+                        <th class="p-2 text-left">Due</th>
+                        <th class="p-2 text-left">Actions</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <!-- Row 1 -->
+                    <tr class="border-b border-default">
+                        <td class="p-2">IP1023</td>
+                        <td class="p-2">INV-5501</td>
+                        <td class="p-2">Amit Kumar</td>
+                        <td class="p-2">9876543210</td>
+                        <td class="p-2">2025-02-15</td>
+                        <td class="p-2">2025-02-20</td>
+                        <td class="p-2">Deluxe</td>
+                        <td class="p-2">205</td>
+                        <td class="p-2">Dr. S. Sen</td>
+                        <td class="p-2">Admin / Admin</td>
+                        <td class="p-2">₹5000</td>
+                        <td class="p-2">₹1200</td>
+
+                        <td class="p-2 flex gap-1">
+                            <button class="px-2 py-1 text-white bg-blue-500 rounded">🔍</button>
+                            <button class="px-2 py-1 bg-green-500 text-white rounded">📝</button>
+                            <button class="px-2 py-1 bg-yellow-400 text-black rounded">📄</button>
+                            <button class="px-2 py-1 bg-purple-500 text-white rounded">📥</button>
+                            <button class="px-2 py-1 bg-red-500 text-white rounded">❌</button>
+                            <button class="px-2 py-1 bg-gray-500 text-white rounded">⚙️</button>
+                        </td>
+                    </tr>
+
+                    <!-- Row 2 -->
+                    <tr class="border-b border-default">
+                        <td class="p-2">IP1189</td>
+                        <td class="p-2">INV-5523</td>
+                        <td class="p-2">Rita Sharma</td>
+                        <td class="p-2">9123456780</td>
+                        <td class="p-2">2025-01-10</td>
+                        <td class="p-2">2025-01-12</td>
+                        <td class="p-2">General</td>
+                        <td class="p-2">102</td>
+                        <td class="p-2">Dr. R. Das</td>
+                        <td class="p-2">Staff / Admin</td>
+                        <td class="p-2">₹2000</td>
+                        <td class="p-2">₹0</td>
+
+                        <td class="p-2 flex gap-1">
+                            <button class="px-2 py-1 text-white bg-blue-500 rounded">🔍</button>
+                            <button class="px-2 py-1 bg-green-500 text-white rounded">📝</button>
+                            <button class="px-2 py-1 bg-yellow-400 text-black rounded">📄</button>
+                            <button class="px-2 py-1 bg-purple-500 text-white rounded">📥</button>
+                            <button class="px-2 py-1 bg-red-500 text-white rounded">❌</button>
+                            <button class="px-2 py-1 bg-gray-500 text-white rounded">⚙️</button>
+                        </td>
+                    </tr>
+
+                    <!-- Row 3 -->
+                    <tr>
+                        <td class="p-2">IP1234</td>
+                        <td class="p-2">INV-5590</td>
+                        <td class="p-2">Sourav Pal</td>
+                        <td class="p-2">9001234567</td>
+                        <td class="p-2">2025-03-02</td>
+                        <td class="p-2">2025-03-05</td>
+                        <td class="p-2">Suite</td>
+                        <td class="p-2">310</td>
+                        <td class="p-2">Dr. M. Roy</td>
+                        <td class="p-2">Admin / Staff</td>
+                        <td class="p-2">₹8000</td>
+                        <td class="p-2">₹2500</td>
+
+                        <td class="p-2 flex gap-1">
+                            <button class="px-2 py-1 text-white bg-blue-500 rounded">🔍</button>
+                            <button class="px-2 py-1 bg-green-500 text-white rounded">📝</button>
+                            <button class="px-2 py-1 bg-yellow-400 text-black rounded">📄</button>
+                            <button class="px-2 py-1 bg-purple-500 text-white rounded">📥</button>
+                            <button class="px-2 py-1 bg-red-500 text-white rounded">❌</button>
+                            <button class="px-2 py-1 bg-gray-500 text-white rounded">⚙️</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+        <div *ngIf="activeTab === 'IP'">
+            IP content here
+            <div class="p-4 space-y-4">
+
+                <!-- Top Back Button -->
+                <button class="flex items-center gap-1 px-3 py-1 rounded-lg bg-neutral-200 hover:bg-neutral-300">
+                    <span class="text-lg">←</span>
+                    <span>Back</span>
+                    <span>C</span>
+                </button>
+
+                <!-- Patient Info - Label Shape (One Line Rows) -->
+                <div class="space-y-1 text-sm">
+
+                    <!-- Row 1 -->
+                    <div class="flex flex-wrap items-center gap-6">
+                        <span><span class="font-semibold text-heading">Name:</span> Mrs Manisha</span>
+                        <span><span class="font-semibold text-heading">Hospital ID:</span> 500454</span>
+                        <span><span class="font-semibold text-heading">Sex:</span> Female</span>
+                        <span><span class="font-semibold text-heading">Age:</span> 0Yrs 0Mths</span>
+                        <span><span class="font-semibold text-heading">Contact:</span> 09591027967</span>
+                    </div>
+
+                    <!-- Row 2 -->
+                    <div class="flex flex-wrap items-center gap-6">
+                        <span><span class="font-semibold text-heading">Nationality:</span> —</span>
+                        <span><span class="font-semibold text-heading">Admission Date:</span> 25/05/2022 03:34 PM</span>
+                        <span><span class="font-semibold text-heading">Admitting Dr:</span> Chandrashekar AM</span>
+                        <span><span class="font-semibold text-heading">Referrer:</span> —</span>
+                    </div>
+
+                    <!-- Row 3 -->
+                    <div class="flex flex-wrap items-center gap-6">
+                        <span class="flex items-center gap-2">
+                            <span class="font-semibold text-heading">Treating Doctors:</span>
+                            <input type="checkbox" class="w-4 h-4">
+                        </span>
+                    </div>
+
+                </div>
+
+                <!-- Tabs Area -->
+                <div class="flex flex-wrap gap-2 border-y py-3">
+
+                    <button class="px-3 py-2 rounded-md bg-neutral-200">Admission Instructions</button>
+                    <button class="px-3 py-2 rounded-md bg-neutral-100">Doctors Activity</button>
+                    <button class="px-3 py-2 rounded-md bg-neutral-100">Nursing Activity</button>
+                    <button class="px-3 py-2 rounded-md bg-neutral-100">Indents</button>
+                    <button class="px-3 py-2 rounded-md bg-neutral-100">Lab Results</button>
+                    <button class="px-3 py-2 rounded-md bg-neutral-100">Prescriptions</button>
+                    <button class="px-3 py-2 rounded-md bg-neutral-100">Discharge Notes</button>
+                    <button class="px-3 py-2 rounded-md bg-neutral-100">Clearance</button>
+                    <button class="px-3 py-2 rounded-md bg-neutral-100">Forms</button>
+                    <button class="px-3 py-2 rounded-md bg-neutral-100">Attachments</button>
+                    <button class="px-3 py-2 rounded-md bg-neutral-100">OP Records</button>
+                    <button class="px-3 py-2 rounded-md bg-neutral-100">OT Notes</button>
+                    <button class="px-3 py-2 rounded-md bg-neutral-100">Summary & Print</button>
+
+                </div>
+
+                <!-- Right Side Buttons -->
+                <div class="flex justify-end gap-3">
+
+                    <button
+                        class="flex items-center gap-2 px-4 py-2 rounded-lg bg-blue-500 text-white hover:bg-blue-600">
+                        🖨️ <span>Print</span>
+                    </button>
+
+                    <button
+                        class="flex items-center gap-2 px-4 py-2 rounded-lg bg-blue-500 text-white hover:bg-blue-600">
+                        💾 <span>Save</span>
+                    </button>
+                </div>
+            </div>
         </div>
 
     </div>
