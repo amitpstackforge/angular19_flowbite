@@ -146,4 +146,5 @@ export class IpNewAdmissionComponent {
     'OT Notes',
     'Summary & Print'
   ];
+  
 }

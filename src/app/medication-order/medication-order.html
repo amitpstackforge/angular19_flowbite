@@ -22,25 +22,39 @@
                         <!-- Line 1: Radio Buttons -->
                         <div class="flex gap-3">
                             <label class="flex items-center gap-1">
-                                <input type="radio" name="type" /> Brand
+                                <input type="radio" name="searchType" checked /> Brand
                             </label>
                             <label class="flex items-center gap-1">
-                                <input type="radio" name="type" /> Composition
+                                <input type="radio" name="searchType" /> Composition
                             </label>
                         </div>
 
                         <!-- Line 2: Textbox + Add/Delete Emoji Buttons -->
                         <div class="flex items-center gap-2 mt-2">
-                            <input type="text" class="border border-gray-400 rounded p-1 w-full"
-                                placeholder="Enter text" />
-                            <button class="px-2 text-green-600">➕</button>
-                            <button class="px-2 text-red-600">🗑️</button>
+                            <input type="text" [(ngModel)]="searchText" (input)="searchMedicine()"
+                                placeholder="Search search Medicines..."
+                                class="border border-gray-400 rounded p-1 w-full" placeholder="Enter text" />
+                            <button class="px-2 text-green-600">🔍</button>
+                            <button class="px-2 text-red-600" (click)="clearSearch()">🗑️</button>
                         </div>
 
                         <!-- Line 3: Another Textbox -->
                         <input type="text" class="border border-gray-400 rounded p-1 w-full mt-2"
                             placeholder="More text" />
+                        <!-- Result List (Just like Google Search Suggestion) -->
+                        <div class="border rounded p-3 bg-gray-50 w-full" *ngIf="filteredMedicines.length > 0">
+                            <p class="font-semibold mb-2">Search Results:</p>
+                            <ul class="max-w-md space-y-1  ">
+                                <li class="p-2 border-b last:border-none hover:bg-blue-100 cursor-pointer"
+                                    *ngFor="let med of filteredMedicines">
+                                    <span class="font-bold">{{med.brand}}</span>
+                                    <br />
+                                    <span class="text-sm text-gray-600">{{med.composition.}}</span>
+                                </li>
 
+
+                            </ul>
+                        </div>
                     </td>
 
                     <!-- 3️⃣ Column 3: Select -->
