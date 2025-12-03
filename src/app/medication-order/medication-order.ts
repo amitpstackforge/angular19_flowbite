@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
+
 @Component({
   selector: 'app-medication-order',
   imports: [CommonModule, FormsModule],
@@ -22,7 +23,23 @@ export class MedicationOrder {
 
   // user search input
   searchText: string = "";
+  doseFrequency: string = '';
+  numbers: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
+  units: string[] = [
+    'mg',
+    'ml',
+    'g',
+    'mcg',
+    'tablet',
+    'capsule',
+    'drop',
+    'puff'
+  ];
+
+  selectedValue: any = '';
+  selectedDurationType: string = '';
+  foodType: string = '';
   // filtered output list
   filteredMedicines: any[] = [];
 
