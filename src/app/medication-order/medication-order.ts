@@ -42,5 +42,15 @@ export class MedicationOrder {
     this.searchText = "";
     this.filteredMedicines = [];
   }
+  selectMedicine(med: any) {
+
+    console.log("med details :", med)
+    console.log("Brand Name:", med.brand)
+    console.log("Composition Name:", med.composition)
+
+    // নির্বাচিত brand নামটি search box এ বসবে
+    this.searchText = med.brand;
+    this.filteredMedicines = [];
+  }
 }
 

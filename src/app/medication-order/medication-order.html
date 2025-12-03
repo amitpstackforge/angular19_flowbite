@@ -46,10 +46,10 @@
                             <p class="font-semibold mb-2">Search Results:</p>
                             <ul class="max-w-md space-y-1  ">
                                 <li class="p-2 border-b last:border-none hover:bg-blue-100 cursor-pointer"
-                                    *ngFor="let med of filteredMedicines">
+                                    *ngFor="let med of filteredMedicines" (click)="selectMedicine(med)">
                                     <span class="font-bold">{{med.brand}}</span>
                                     <br />
-                                    <span class="text-sm text-gray-600">{{med.composition.}}</span>
+                                    <span class="text-sm text-gray-600">{{med.composition}}</span>
                                 </li>
 
 
