@@ -14,15 +14,19 @@ export class MedicationOrder {
   // 🟢 Dummy Medicine List (Brand + Composition)
   // Bengali Comment: এখানে মেডিসিনের লিস্ট রাখা হয়েছে।
   medicines = [
-    { brand: 'Paracetamol', composition: 'Acetaminophen 500mg' },
-    { brand: 'Calpol', composition: 'Paracetamol 250mg' },
-    { brand: 'Azithral', composition: 'Azithromycin 500mg' },
-    { brand: 'Metrogyl', composition: 'Metronidazole 400mg' },
-    { brand: 'Allegra', composition: 'Fexofenadine 120mg' },
+    { brand: 'Paracetamol', composition: 'Acetaminophen 500mg', type: 'Tablet' },
+    { brand: 'Calpol', composition: 'Paracetamol 250mg', type: 'Syrup' },
+    { brand: 'Azithral', composition: 'Azithromycin 500mg', type: 'Tablet' },
+    { brand: 'Metrogyl', composition: 'Metronidazole 400mg', type: 'Injection' },
+    { brand: 'Allegra', composition: 'Fexofenadine 120mg', type: 'Capsule' },
+    { brand: 'Betnovate', composition: 'Betamethasone Ointment', type: 'Ointment' }
   ];
+
 
   // user search input
   searchText: string = "";
+  searchTextComposition: string = "";
+  medicineType: string = "";
   doseFrequency: string = '';
   numbers: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
@@ -57,17 +61,27 @@ export class MedicationOrder {
   // Clear input box
   clearSearch() {
     this.searchText = "";
+
+    this.searchTextComposition = "";
+
+    // Set medicine type dynamically
+    this.medicineType = "";
+
     this.filteredMedicines = [];
   }
   selectMedicine(med: any) {
 
-    console.log("med details :", med)
-    console.log("Brand Name:", med.brand)
-    console.log("Composition Name:", med.composition)
+    console.log("Medicine : " + JSON.stringify(med));
 
     // নির্বাচিত brand নামটি search box এ বসবে
     this.searchText = med.brand;
+    this.searchTextComposition = med.composition;
+
+    // Set medicine type dynamically
+    this.medicineType = med.type;
+
     this.filteredMedicines = [];
+
   }
 }
 

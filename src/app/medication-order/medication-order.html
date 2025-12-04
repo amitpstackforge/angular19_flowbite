@@ -52,8 +52,9 @@
 
                     <!-- 1️⃣ Column 1: Select -->
                     <td class="border border-gray-400 p-2 w-[15%]">
-                        <select class="border border-gray-400 rounded p-1 w-full">
-                            <option>Select</option>
+                        <select class="border border-gray-400 rounded p-1 w-full" [(ngModel)]="medicineType">
+                            <option [value]="medicineType">{{ medicineType }}</option>
+
                         </select>
                     </td>
 
@@ -81,7 +82,7 @@
 
                         <!-- Line 3: Another Textbox -->
                         <input type="text" class="border border-gray-400 rounded p-1 w-full mt-2"
-                            placeholder="More text" />
+                            [(ngModel)]="searchTextComposition" placeholder="More text" />
                         <!-- Result List (Just like Google Search Suggestion) -->
                         <div class="border rounded p-3 bg-gray-50 w-full" *ngIf="filteredMedicines.length > 0">
                             <p class="font-semibold mb-2">Search Results:</p>
@@ -147,7 +148,9 @@
                 <tr>
                     <td colspan="6" class="border border-gray-400 p-2">
                         Full Width Row Content
-                        <div class="w-full space-y-4 p-4 border rounded-lg bg-neutral-50">
+
+
+                        <div class="w-full space-y-1 p-4 border rounded-lg bg-neutral-50">
 
                             <!-- ROW 1 — Food Instruction Radios -->
                             <div class="flex flex-wrap items-center gap-6">
@@ -159,20 +162,20 @@
                                 </label>
 
                                 <label class="flex items-center gap-2">
-                                    <input type="radio" name="food" class="w-4 h-4"[(ngModel)]="foodType"
-                                        value="after"  />
+                                    <input type="radio" name="food" class="w-4 h-4" [(ngModel)]="foodType"
+                                        value="after" />
                                     After Food
                                 </label>
 
                                 <label class="flex items-center gap-2">
                                     <input type="radio" name="food" class="w-4 h-4" [(ngModel)]="foodType"
-                                        value="with"  />
+                                        value="with" />
                                     With Food
                                 </label>
 
                                 <label class="flex items-center gap-2">
                                     <input type="radio" name="food" class="w-4 h-4" [(ngModel)]="foodType"
-                                        value="Other"  />
+                                        value="Other" />
                                     Other
                                     <span>🖊️</span>
                                     <span>(Note)</span>
@@ -181,17 +184,17 @@
                             </div>
 
                             <!-- ROW 2 — Available Dosages -->
-                            <div class="flex flex-wrap items-center gap-6">
+                            <div class="flex flex-wrap items-center gap-3">
 
                                 <!-- Ordered Qty -->
-                                <div class="flex items-center gap-2">
+                                <div class="flex items-center gap-1">
                                     <label class="font-semibold text-heading">Ordered Qty:</label>
                                     <input type="text" class="border border-default rounded-base px-3 py-2 w-20"
                                         value="0" />
                                 </div>
 
                                 <!-- Route -->
-                                <div class="flex items-center gap-2">
+                                <div class="flex items-center gap-1">
                                     <label class="font-semibold text-heading">Route:</label>
                                     <select class="border border-default rounded-base px-3 py-2 w-40">
                                         <option>-select-</option>
@@ -199,7 +202,7 @@
                                 </div>
 
                                 <!-- Total Volume -->
-                                <div class="flex items-center gap-2">
+                                <div class="flex items-center gap-1">
                                     <label class="font-semibold text-heading">Total volume (ml):</label>
                                     <select class="border border-default rounded-base px-3 py-2 w-32">
                                         <option>-select-</option>
@@ -222,11 +225,11 @@
                             <!-- ROW 4 — Pending/Stopped + START -->
                             <div class="flex items-center gap-4">
 
-                                <button class="px-4 py-2 bg-red-500 text-white rounded-base hover:bg-red-600">
+                                <button class="px-2 py-0 bg-red-500 text-white  hover:bg-red-600">
                                     Pending / Stopped
                                 </button>
 
-                                <button class="px-4 py-2 bg-green-600 text-white rounded-base hover:bg-green-700">
+                                <button class="px-2 py-2 bg-green-600 text-white rounded-base hover:bg-green-700">
                                     START
                                 </button>
 
