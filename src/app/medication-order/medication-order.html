@@ -15,7 +15,7 @@
         <div class="flex items-center gap-3">
 
             <!-- + Add New Medication -->
-            <button class="px-4 py-2 rounded-md bg-sky-500 text-white hover:bg-sky-600">
+            <button class="px-4 py-2 rounded-md bg-sky-500 text-white hover:bg-sky-600" (click)="addNewMedication()">
                 + Add New Medication
             </button>
 
@@ -25,7 +25,7 @@
             </button>
 
             <!-- Save -->
-            <button class="px-4 py-2 rounded-md bg-blue-900 text-white hover:bg-blue-800">
+            <button class="px-4 py-2 rounded-md bg-blue-900 text-white hover:bg-blue-800" (click)="saveAll()">
                 Save
             </button>
 
@@ -40,7 +40,7 @@
 
 
 <table class="w-full border border-gray-400 border-collapse">
-    <tr>
+    <tr *ngFor="let row of medicationRows; let i = index">
         <!-- ================= FIRST COLUMN ================= -->
         <td class="w-[70%] border border-gray-400 align-top p-2">
 
@@ -52,8 +52,8 @@
 
                     <!-- 1️⃣ Column 1: Select -->
                     <td class="border border-gray-400 p-2 w-[15%]">
-                        <select class="border border-gray-400 rounded p-1 w-full" [(ngModel)]="medicineType">
-                            <option [value]="medicineType">{{ medicineType }}</option>
+                        <select class="border border-gray-400 rounded p-1 w-full" [(ngModel)]="row.medicineType">
+                            <option [value]="row.medicineType">{{ row.medicineType }}</option>
 
                         </select>
                     </td>
@@ -73,22 +73,22 @@
 
                         <!-- Line 2: Textbox + Add/Delete Emoji Buttons -->
                         <div class="flex items-center gap-2 mt-2">
-                            <input type="text" [(ngModel)]="searchText" (input)="searchMedicine()"
+                            <input type="text" [(ngModel)]="row.searchText" (input)="searchMedicine(row)"
                                 placeholder="Search search Medicines..."
                                 class="border border-gray-400 rounded p-1 w-full" placeholder="Enter text" />
                             <button class="px-2 text-green-600">🔍</button>
-                            <button class="px-2 text-red-600" (click)="clearSearch()">🗑️</button>
+                            <button class="px-2 text-red-600" (click)="clearSearch(row)">🗑️</button>
                         </div>
 
                         <!-- Line 3: Another Textbox -->
                         <input type="text" class="border border-gray-400 rounded p-1 w-full mt-2"
-                            [(ngModel)]="searchTextComposition" placeholder="More text" />
+                            [(ngModel)]="row.searchTextComposition" placeholder="More text" />
                         <!-- Result List (Just like Google Search Suggestion) -->
-                        <div class="border rounded p-3 bg-gray-50 w-full" *ngIf="filteredMedicines.length > 0">
+                        <div class="border rounded p-3 bg-gray-50 w-full" *ngIf="row.filteredMedicines.length > 0">
                             <p class="font-semibold mb-2">Search Results:</p>
                             <ul class="max-w-md space-y-1  ">
                                 <li class="p-2 border-b last:border-none hover:bg-blue-100 cursor-pointer"
-                                    *ngFor="let med of filteredMedicines" (click)="selectMedicine(med)">
+                                    *ngFor="let med of row.filteredMedicines" (click)="selectMedicine(row,med)">
                                     <span class="font-bold">{{med.brand}}</span>
                                     <br />
                                     <span class="text-sm text-gray-600">{{med.composition}}</span>
@@ -101,7 +101,7 @@
 
                     <!-- 3️⃣ Column 3: Select -->
                     <td class="border border-gray-400 p-2  w-[15%]">
-                        <select class="border border-gray-400 rounded p-1 w-full" [(ngModel)]="doseFrequency">
+                        <select class="border border-gray-400 rounded p-1 w-full" [(ngModel)]="row.doseFrequency">
                             <option value="">Select</option>
                             <option value="OD">OD (Once a Day)</option>
                             <option value="BD">BD (Twice a Day)</option>
@@ -125,7 +125,7 @@
 
                     <!-- 6️⃣ Column 6: Select -->
                     <td class="border border-gray-400 p-2 w-[15%]">
-                        <select class="border border-gray-400 rounded p-1 w-full" [(ngModel)]="selectedValue">
+                        <select class="border border-gray-400 rounded p-1 w-full" [(ngModel)]="row.selectedValue">
 
                             <option value="">Select</option>
 
@@ -156,25 +156,25 @@
                             <div class="flex flex-wrap items-center gap-6">
 
                                 <label class="flex items-center gap-2">
-                                    <input type="radio" name="food" class="w-4 h-4" [(ngModel)]="foodType"
+                                    <input type="radio" name="food" class="w-4 h-4" [(ngModel)]="row.foodType"
                                         value="before" />
                                     Before Food
                                 </label>
 
                                 <label class="flex items-center gap-2">
-                                    <input type="radio" name="food" class="w-4 h-4" [(ngModel)]="foodType"
+                                    <input type="radio" name="food" class="w-4 h-4" [(ngModel)]="row.foodType"
                                         value="after" />
                                     After Food
                                 </label>
 
                                 <label class="flex items-center gap-2">
-                                    <input type="radio" name="food" class="w-4 h-4" [(ngModel)]="foodType"
+                                    <input type="radio" name="food" class="w-4 h-4" [(ngModel)]="row.foodType"
                                         value="with" />
                                     With Food
                                 </label>
 
                                 <label class="flex items-center gap-2">
-                                    <input type="radio" name="food" class="w-4 h-4" [(ngModel)]="foodType"
+                                    <input type="radio" name="food" class="w-4 h-4" [(ngModel)]="row.foodType"
                                         value="Other" />
                                     Other
                                     <span>🖊️</span>
@@ -190,31 +190,31 @@
                                 <div class="flex items-center gap-1">
                                     <label class="font-semibold text-heading">Ordered Qty:</label>
                                     <input type="text" class="border border-default rounded-base px-3 py-2 w-20"
-                                        value="0" />
+                                        [(ngModel)]="row.orderedQty" />
                                 </div>
 
                                 <!-- Route -->
                                 <div class="flex items-center gap-1">
                                     <label class="font-semibold text-heading">Route:</label>
-                                    <select class="border border-default rounded-base px-3 py-2 w-40">
+                                    <select class="border border-default rounded-base px-3 py-2 w-40"
+                                        [(ngModel)]="row.route">
                                         <option>-select-</option>
                                     </select>
                                 </div>
-
                                 <!-- Total Volume -->
                                 <div class="flex items-center gap-1">
                                     <label class="font-semibold text-heading">Total volume (ml):</label>
-                                    <select class="border border-default rounded-base px-3 py-2 w-32">
+                                    <select class="border border-default rounded-base px-3 py-2 w-32"
+                                        [(ngModel)]="row.totalVolume">
                                         <option>-select-</option>
                                     </select>
                                 </div>
-
                                 <!-- Rate -->
                                 <div class="flex items-center gap-2">
                                     <label class="font-semibold text-heading">Rate (ml/hr):</label>
-                                    <input type="text" class="border border-default rounded-base px-3 py-2 w-28" />
+                                    <input type="text" class="border border-default rounded-base px-3 py-2 w-28"
+                                        [(ngModel)]="row.rate" />
                                 </div>
-
                             </div>
 
                             <!-- ROW 3 — Medication Status -->
@@ -250,19 +250,20 @@
             <label class="font-medium text-heading block">Label Name</label>
 
             <!-- Line 2: Date Input -->
-            <input type="date" class="border border-gray-400 rounded p-1 w-full mt-2" />
+            <input type="date" class="border border-gray-400 rounded p-1 w-full mt-2" [(ngModel)]="row.date" />
+
 
             <!-- Line 3: Checkbox -->
             <div class="mt-3">
                 <label class="flex items-center gap-2">
-                    <input type="checkbox" /> Lifelong
+                    <input type="checkbox" [(ngModel)]="row.lifelong" /> Lifelong
                 </label>
             </div>
 
             <!-- Line 4: Textbox + Select in same line -->
             <div class=" gap-2 mt-3">
                 <input type="number" class="border border-gray-400 rounded p-1 w-full mb-2" placeholder="Enter value" />
-                <select class="border border-gray-400 rounded p-1 w-full" [(ngModel)]="selectedDurationType">
+                <select class="border border-gray-400 rounded p-1 w-full" [(ngModel)]="row.selectedDurationType">
 
                     <option value="">Select</option>
                     <option value="days">Days</option>
@@ -281,10 +282,34 @@
 
                 <button class="border border-gray-400 rounded p-2">⬆️</button>
                 <button class="border border-gray-400 rounded p-2">⬇️</button>
-                <button class="border border-red-500 text-red-600 rounded p-2">🗑️</button>
+                <button class="border border-red-500 text-red-600 rounded p-2" (click)="deleteRow(i)">🗑️</button>
 
             </div>
 
         </td>
     </tr>
 </table>
+
+<div class="mt-10" *ngIf="savedMedicationList.length > 0">
+    <h2 class="text-xl font-bold mb-3">Saved Medication List</h2>
+
+    <table class="w-full border border-gray-500 border-collapse">
+        <tr class="bg-gray-200">
+            <th class="border p-2">Brand</th>
+            <th class="border p-2">Composition</th>
+            <th class="border p-2">Type</th>
+            <th class="border p-2">Dose</th>
+            <th class="border p-2">Qty</th>
+            <th class="border p-2">Food</th>
+        </tr>
+
+        <tr *ngFor="let item of savedMedicationList">
+            <td class="border p-2">{{ item.searchText }}</td>
+            <td class="border p-2">{{ item.searchTextComposition }}</td>
+            <td class="border p-2">{{ item.medicineType }}</td>
+            <td class="border p-2">{{ item.doseFrequency }}</td>
+            <td class="border p-2">{{ item.selectedValue }}</td>
+            <td class="border p-2">{{ item.foodType }}</td>
+        </tr>
+    </table>
+</div>

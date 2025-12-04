@@ -49,39 +49,85 @@ export class MedicationOrder {
 
   // 🔍 Search Function (Brand + Composition Search)
   // Bengali Comment: ব্যবহারকারী যেটা টাইপ করবে, সেটার সাথে মিল আছে এমন ব্র্যান্ড বা কম্পোজিশন দেখানো হবে
-  searchMedicine() {
-    const query = this.searchText.toLowerCase();
+  searchMedicine(row: any) {
 
-    this.filteredMedicines = this.medicines.filter(med =>
+    const query = row.searchText.toLowerCase();
+
+    row.filteredMedicines = this.medicines.filter(med =>
       med.brand.toLowerCase().includes(query) ||
       med.composition.toLowerCase().includes(query)
     );
   }
 
   // Clear input box
-  clearSearch() {
-    this.searchText = "";
+  clearSearch(row: any) {
 
-    this.searchTextComposition = "";
+    row.searchText = "";
+
+    row.searchTextComposition = "";
 
     // Set medicine type dynamically
-    this.medicineType = "";
+    row.medicineType = "";
 
-    this.filteredMedicines = [];
+    row.filteredMedicines = []
   }
-  selectMedicine(med: any) {
+  selectMedicine(row: any, med: any) {
 
     console.log("Medicine : " + JSON.stringify(med));
 
     // নির্বাচিত brand নামটি search box এ বসবে
-    this.searchText = med.brand;
-    this.searchTextComposition = med.composition;
+    row.searchText = med.brand;
+    row.searchTextComposition = med.composition;
 
     // Set medicine type dynamically
-    this.medicineType = med.type;
+    row.medicineType = med.type;
 
-    this.filteredMedicines = [];
+    row.filteredMedicines = [];
 
   }
+  medicationRows: any[] = [
+    this.createEmptyRow()
+  ];
+
+  // After SAVE → store results here
+  savedMedicationList: any[] = [];
+
+  createEmptyRow() {
+    return {
+      searchText: "",
+      searchTextComposition: "",
+      medicineType: "",
+      doseFrequency: "",
+      selectedValue: "",
+      selectedDurationType: "",
+      foodType: "",
+
+      // NEW FIELDS
+      orderedQty: "",
+      route: "",
+      totalVolume: "",
+      rate: "",
+      labelName: "",
+      date: "",
+      lifelong: false,
+      durationValue: "",
+
+      filteredMedicines: []
+    };
+  }
+  addNewMedication() {
+    this.medicationRows.unshift(this.createEmptyRow());
+  }
+
+  deleteRow(index: number) {
+    this.medicationRows.splice(index, 1);
+  }
+
+  // SAVE FUNCTION
+  saveAll() {
+    this.savedMedicationList = JSON.parse(JSON.stringify(this.medicationRows));
+    console.log("Saved List:", this.savedMedicationList);
+  }
+
 }
 
