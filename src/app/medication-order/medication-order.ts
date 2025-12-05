@@ -112,6 +112,16 @@ export class MedicationOrder {
       lifelong: false,
       durationValue: "",
 
+
+      // NEW: Time slots (morning/afternoon/evening/night)
+      times: {
+        morning: { enabled: false, dose: 0 },
+        afternoon: { enabled: false, dose: 0 },
+        evening: { enabled: false, dose: 0 },
+        night: { enabled: false, dose: 0 }
+
+      },
+
       filteredMedicines: []
     };
   }
@@ -127,6 +137,32 @@ export class MedicationOrder {
   saveAll() {
     this.savedMedicationList = JSON.parse(JSON.stringify(this.medicationRows));
     console.log("Saved List:", this.savedMedicationList);
+  }
+
+  // 🔥 Auto assign doses depending on OD/BD/TDS
+  updateDoseFrequency(row: any) {
+    const value = row.doseFrequency;
+
+    // Reset all first
+    row.times.morning = { enabled: false, dose: 0 };
+    row.times.afternoon = { enabled: false, dose: 0 };
+    row.times.evining = { enabled: false, dose: 0 };
+    row.times.night = { enabled: false, dose: 0 };
+
+    if (value == "OD") {
+      row.times.morning = { enabled: true, dose: 1 };
+    }
+    if (value == "BD") {
+      row.times.morning = { enabled: true, dose: 1 };
+      row.times.evening = { enabled: true, dose: 1 };
+    }
+    else if (value === "TDS") {
+      row.times.morning = { enabled: true, dose: 1 };
+      row.times.afternoon = { enabled: true, dose: 1 };
+      row.times.evening = { enabled: true, dose: 1 };
+    }
+  
+
   }
 
 }

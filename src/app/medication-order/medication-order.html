@@ -101,7 +101,8 @@
 
                     <!-- 3️⃣ Column 3: Select -->
                     <td class="border border-gray-400 p-2  w-[15%]">
-                        <select class="border border-gray-400 rounded p-1 w-full" [(ngModel)]="row.doseFrequency">
+                        <select class="border border-gray-400 rounded p-1 w-full" (change)="updateDoseFrequency(row)"
+                            [(ngModel)]="row.doseFrequency">
                             <option value="">Select</option>
                             <option value="OD">OD (Once a Day)</option>
                             <option value="BD">BD (Twice a Day)</option>
@@ -129,10 +130,6 @@
 
                             <option value="">Select</option>
 
-                            <!-- Numbers -->
-                            <optgroup label="Numbers">
-                                <option *ngFor="let num of numbers" [value]="num">{{ num }}</option>
-                            </optgroup>
 
                             <!-- Units -->
                             <optgroup label="Units">
@@ -301,7 +298,14 @@
             <th class="border p-2">Dose</th>
             <th class="border p-2">Qty</th>
             <th class="border p-2">Food</th>
+
+            <!-- NEW TIME COLUMNS -->
+            <th class="border p-2">Morning</th>
+            <th class="border p-2">Afternoon</th>
+            <th class="border p-2">Evening</th>
+            <th class="border p-2">Night</th>
         </tr>
+
 
         <tr *ngFor="let item of savedMedicationList">
             <td class="border p-2">{{ item.searchText }}</td>
@@ -310,6 +314,52 @@
             <td class="border p-2">{{ item.doseFrequency }}</td>
             <td class="border p-2">{{ item.selectedValue }}</td>
             <td class="border p-2">{{ item.foodType }}</td>
+
+            <!-- Morning -->
+            <td class="border p-2">
+                <label class="flex items-center justify-center gap-2 cursor-pointer">
+                    <input type="checkbox" [(ngModel)]="item.times.morning.enabled" />
+                    <span>Given </span>
+                    <span class="px-2 py-1 text-white rounded text-xs  "
+                        [ngClass]="item.times.morning.enabled ?  'bg-green-600':'bg-red-600'">
+                        {{item.times.morning.dose}}
+                    </span>
+                </label>
+            </td>
+
+            <!-- Afternoon -->
+            <td class="border p-2">
+                <label class="flex items-center justify-center gap-2 cursor-pointer">
+                    <input type="checkbox" [(ngModel)]="item.times.afternoon.enabled" />
+                    <span>Given </span>
+                    <span class="px-2 py-1 text-white rounded text-xs  "
+                        [ngClass]="item.times.afternoon.enabled ?  'bg-green-600':'bg-red-600'">{{item.times.afternoon.dose}}
+                    </span>
+                </label>
+            </td>
+            <!-- Evening -->
+
+            <td class="border p-2">
+                <label class="flex items-center justify-center gap-2 cursor-pointer">
+                    <input type="checkbox" [(ngModel)]="item.times.evening.enabled" />
+                    <span>Given </span>
+                    <span class="px-2 py-1 text-white rounded text-xs  "
+                        [ngClass]="item.times.evening.enabled ?  'bg-green-600':'bg-red-600'">{{item.times.evening.dose}}
+                    </span>
+                </label>
+            </td>
+            <!-- night -->
+
+            <td class="border p-2">
+                <label class="flex items-center justify-center gap-2 cursor-pointer">
+                    <input type="checkbox" [(ngModel)]="item.times.night.enabled" />
+                    <span class="px-2 py-1 text-white rounded text-xs  ">
+                        {{item.times.night.dose}}
+
+                    </span>
+                </label>
+            </td>
+
         </tr>
     </table>
 </div>
